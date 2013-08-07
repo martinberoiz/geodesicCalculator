@@ -12,6 +12,8 @@
 @interface PhotonTrajectory : NSObject {
 	
 	double bhSpin;
+	double bhMass;
+	double pulsarDistance;
 	double massToDistanceRatio;
 	double thetaIn;
 	double phiIn;
@@ -34,6 +36,10 @@
 @property(readwrite, assign) int numberOfPoints;
 @property(readwrite, assign) double **trajectoryPointsArray;
 
+-(double) bhMass;
+-(double) pulsarDistance;
+-(void) setBhMass:(double)newMass;
+-(void) setPulsarDistance:(double)newDistance;
 -(NSNumber *) theta0;
 -(void) setTheta0:(NSNumber *)value;
 -(NSNumber *) phi0;

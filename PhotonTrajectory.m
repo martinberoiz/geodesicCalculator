@@ -19,6 +19,23 @@
 @synthesize numberOfPoints;
 @synthesize trajectoryPointsArray;
 
+-(void) setBhMass: (double)newMass {
+	bhMass = newMass;
+	massToDistanceRatio = bhMass/pulsarDistance;
+}
+
+-(void) setPulsarDistance: (double)newDistance {
+	pulsarDistance = newDistance;
+	massToDistanceRatio = bhMass/pulsarDistance;
+}
+
+-(double) bhMass {
+	return bhMass;	
+}
+
+-(double) pulsarDistance {
+	return pulsarDistance;
+}
 
 -(NSNumber *) theta0 {
 	return [NSNumber numberWithDouble:theta0];
@@ -73,8 +90,9 @@
 	if ((self = [super init])) {
 		phiIn = 0;
 		thetaIn = M_PI/2.;
-		[self setMassToDistanceRatio:0.2];
-		[self setBhSpin:0.0];
+		bhMass = 1.0;
+		[self setPulsarDistance:5];
+		bhSpin = 0.0;
 		theta0 = M_PI/2.;
 		phi0 = 0.;
 		thetaOut = 0.;
@@ -89,8 +107,7 @@
 		yp = (double **)malloc(nvars*sizeof(**yp));
 		yp[0] = (double *)malloc(nvars*kmax*sizeof(**yp));
 		for (i = 1; i < nvars; i++) yp[i] = yp[i - 1] + kmax;
-		dxsav = 1E-2; //*/	
-		//kmax = 0;		
+		dxsav = 1E-2;
 		
 	}
 		
@@ -102,34 +119,37 @@
 	
 	double x = 1./[self massToDistanceRatio];
 	double cosThSq = pow(cos(thetaIn), 2);
+	double sinThSq = 1 - cosThSq;
 	double sinPhiSq = pow(sin(phiIn), 2);
 	double cosPhiSq = 1 - sinPhiSq;
 	double th0 = theta0;
 	a = [self bhSpin];
+	double xxm2 = x*(x - 2);
+	double a4 = pow(a, 4);
 	
 	double coeff2, coeff1, coeff0;
 	
 	
-	coeff0 = -2*(pow(a,8)*(cosThSq - 1)*sinPhiSq + 2*(cosThSq - 1)*sinPhiSq*pow(x - 2,2)*pow(x,6) + 
-				 pow(a,6)*(cosThSq - 1)*sinPhiSq*x*(-2 + 5*x) + 
-				 a*a*pow(x,3)*(8*cosPhiSq*(-2*cosThSq + x) + sinPhiSq*(x - 2)*(4 - 4*(cosThSq - 1)*x + 7*(cosThSq - 1)*x*x)) + 
-				 pow(a,4)*x*x*(8*cosPhiSq*cosThSq + sinPhiSq*(4 - 12*(cosThSq - 1)*x + 9*(cosThSq - 1)*x*x)) + 
-				 a*a*sinPhiSq*(a*a + (x - 2)*x)*(pow(a,4)*(cosThSq - 1) + 2*a*a*(cosThSq - 1)*(x - 2)*x + 
-												 x*x*(-4 - 4*(cosThSq - 1)*x + (cosThSq - 1)*x*x))*cos(2*th0));
+	coeff0 = -2*(-a4*a4*sinThSq*sinPhiSq - 2*sinThSq*sinPhiSq*pow(x - 2,2)*pow(x,6) - 
+				 a4*a*a*sinThSq*sinPhiSq*x*(-2 + 5*x) + 
+				 a*a*pow(x,3)*(8*cosPhiSq*(-2*cosThSq + x) + sinPhiSq*(x - 2)*(4 + 4*sinThSq*x - 7*sinThSq*x*x)) + 
+				 a4*x*x*(8*cosPhiSq*cosThSq + sinPhiSq*(4 + 12*sinThSq*x - 9*sinThSq*x*x)) + 
+				 a*a*sinPhiSq*(a*a + xxm2)*(-a4*sinThSq - 2*a*a*sinThSq*xxm2 + 
+											x*x*(-4 + 4*sinThSq*x - sinThSq*x*x))*cos(2*th0));
 	
-	coeff1 = -8*a*x*(-(sinPhiSq*(a*a*(-2 + cosThSq) - 2*(x - 2)*x)*(a*a + (x - 2)*x)) + 
-					 cosPhiSq*(a*a + 2*(x - 2)*x)*(a*a*cosThSq + x*(-2*cosThSq + x))*pow(1./sin(th0),2) + 
-					 a*a*cos(2*th0)*(cosThSq*sinPhiSq*(a*a + (x - 2)*x) + 
+	coeff1 = -8*a*x*(-(sinPhiSq*(a*a*(-2 + cosThSq) - 2*xxm2)*(a*a + xxm2)) + 
+					 cosPhiSq*(a*a + 2*xxm2)*(a*a*cosThSq + x*(-2*cosThSq + x))*pow(1./sin(th0),2) + 
+					 a*a*cos(2*th0)*(cosThSq*sinPhiSq*(a*a + xxm2) + 
 									 cosPhiSq*(a*a*cosThSq + x*(-2*cosThSq + x))*pow(1./sin(th0),2)));
 	
-	coeff2 = -((a*a + 2*(x - 2)*x + a*a*cos(2*th0))*
-			   (4*pow(a,4)*cosPhiSq*cosThSq + 4*pow(a,4)*sinPhiSq - 3*pow(a,4)*cosThSq*sinPhiSq - 24*a*a*cosPhiSq*cosThSq*x - 
+	coeff2 = -((a*a + 2*xxm2 + a*a*cos(2*th0))*
+			   (4*a4*cosPhiSq*cosThSq + 4*a4*sinPhiSq - 3*a4*cosThSq*sinPhiSq - 24*a*a*cosPhiSq*cosThSq*x - 
 				16*a*a*sinPhiSq*x + 6*a*a*cosThSq*sinPhiSq*x + 4*a*a*cosPhiSq*x*x + 32*cosPhiSq*cosThSq*x*x + 8*a*a*cosPhiSq*cosThSq*x*x + 
 				16*sinPhiSq*x*x + 8*a*a*sinPhiSq*x*x - 3*a*a*cosThSq*sinPhiSq*x*x - 16*cosPhiSq*pow(x,3) - 
 				16*cosPhiSq*cosThSq*pow(x,3) - 16*sinPhiSq*pow(x,3) + 8*cosPhiSq*pow(x,4) + 4*sinPhiSq*pow(x,4) + 
-				4*(pow(a,4)*(cosPhiSq*cosThSq + (-1 + cosThSq)*sinPhiSq) - sinPhiSq*pow(x - 2,2)*x*x + 
+				4*(a4*(cosPhiSq*cosThSq + (-1 + cosThSq)*sinPhiSq) - sinPhiSq*xxm2*xxm2 + 
 				   a*a*x*((-2 + cosThSq)*sinPhiSq*(x - 2) + cosPhiSq*(-2*cosThSq + x)))*cos(2*th0) - 
-				a*a*cosThSq*sinPhiSq*(a*a + (x - 2)*x)*cos(4*th0))*pow(1./sin(th0),4))/4.;
+				a*a*cosThSq*sinPhiSq*(a*a + xxm2)*cos(4*th0))*pow(1./sin(th0),4))/4.;
 	
 
 	double b1,b2;
@@ -139,12 +159,12 @@
 	
 	[self setImpactParam:b];
 	
-	q = (2*cosThSq*x*(-8*pow(a,5)*b + 16*a*b*(x - 2)*x*x - 4*pow(a,3)*b*x*(-8 + 3*x) + pow(a,6)*(4 + 3*x) + 
-					  2*pow(x - 2,2)*x*x*(2*b*b + pow(x,3)) + pow(a,4)*(b*b*(4 - 3*x) + 4*x*(-4 - x + 2*x*x)) + 
-					  a*a*x*(-4*b*b*pow(x - 2,2) + x*(16 - 16*x*x + 7*pow(x,3))) + a*a*x*(pow(a,4) + 4*a*b*x +
-																						  (-4 + x)*pow(x,3) - a*a*(b*b - 2*(x - 2)*x))*cos(2*th0)) + 
-		 2*x*x*pow(a*a + (x - 2)*x,2)*(-a*a + 2*b*b + a*a*cos(2*th0))*pow(1./tan(th0),2))
-	/(4*pow(a*a + (x - 2)*x,2)*(a*a*cosThSq + x*(-2*cosThSq + x)));
+	q = (2*cosThSq*x*(-8*a*a4*b + 16*a*b*xxm2*x - 4*pow(a,3)*b*x*(-8 + 3*x) + a*a*a4*(4 + 3*x) + 
+					  2*pow(x - 2,2)*x*x*(2*b*b + pow(x,3)) + a4*(b*b*(4 - 3*x) + 4*x*(-4 - x + 2*x*x)) + 
+					  a*a*x*(-4*b*b*pow(x - 2,2) + x*(16 - 16*x*x + 7*pow(x,3))) + a*a*x*(a4 + 4*a*b*x +
+																						  (x - 4)*pow(x,3) - a*a*(b*b - 2*xxm2))*cos(2*th0)) + 
+		 2*x*x*pow(a*a + xxm2,2)*(-a*a + 2*b*b + a*a*cos(2*th0))*pow(1./tan(th0),2))
+	/(4*pow(a*a + xxm2,2)*(a*a*cosThSq + x*(-2*cosThSq + x)));
 	
 	[self setCarterConst:q];
 	
@@ -261,6 +281,8 @@
 	[super dealloc];
 	
 }
+
+
 
 
 @end

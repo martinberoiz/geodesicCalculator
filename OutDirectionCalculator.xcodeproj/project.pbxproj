@@ -18,14 +18,12 @@
 		5BAF29411240522A000ACE00 /* DegreesToRadiansTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF29401240522A000ACE00 /* DegreesToRadiansTransformer.m */; };
 		5BC51043125977AE0079F71F /* Calculator.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5BC51042125977AE0079F71F /* Calculator.icns */; };
 		5BC51045125977B50079F71F /* LogoMB2.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5BC51044125977B50079F71F /* LogoMB2.tif */; };
-		5BF0BDA2124A967D00583103 /* PlotterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0BDA1124A967D00583103 /* PlotterController.m */; };
 		5BF0BDBD124AAB1A00583103 /* PlotterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0BDBC124AAB1A00583103 /* PlotterView.m */; };
-		5BF0BEC0124AD64000583103 /* Plotter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BF0BEBF124AD64000583103 /* Plotter.xib */; };
+		5BF0BE6E124AD43300583103 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF0BE6C124AD43100583103 /* GLUT.framework */; };
+		5BF0BE6F124AD43300583103 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF0BE6D124AD43300583103 /* OpenGL.framework */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
-		AED9E31817B1DA4000731CDF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		AED9E31B17B1DA7D00731CDF /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED9E31A17B1DA7D00731CDF /* OpenGL.framework */; };
-		AED9E31D17B1DA8400731CDF /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED9E31C17B1DA8400731CDF /* GLUT.framework */; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,17 +52,12 @@
 		5BAF29401240522A000ACE00 /* DegreesToRadiansTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DegreesToRadiansTransformer.m; sourceTree = "<group>"; };
 		5BC51042125977AE0079F71F /* Calculator.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Calculator.icns; sourceTree = "<group>"; };
 		5BC51044125977B50079F71F /* LogoMB2.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = LogoMB2.tif; sourceTree = "<group>"; };
-		5BF0BDA0124A967D00583103 /* PlotterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlotterController.h; sourceTree = "<group>"; };
-		5BF0BDA1124A967D00583103 /* PlotterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlotterController.m; sourceTree = "<group>"; };
 		5BF0BDBB124AAB1A00583103 /* PlotterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlotterView.h; sourceTree = "<group>"; };
 		5BF0BDBC124AAB1A00583103 /* PlotterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlotterView.m; sourceTree = "<group>"; };
 		5BF0BE6C124AD43100583103 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GLUT.framework; sourceTree = "<group>"; };
 		5BF0BE6D124AD43300583103 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenGL.framework; sourceTree = "<group>"; };
-		5BF0BEBF124AD64000583103 /* Plotter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Plotter.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* OutDirectionCalculator-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OutDirectionCalculator-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* OutDirectionCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OutDirectionCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AED9E31A17B1DA7D00731CDF /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = ../../../../../../System/Library/Frameworks/OpenGL.framework; sourceTree = "<group>"; };
-		AED9E31C17B1DA8400731CDF /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../../../../System/Library/Frameworks/GLUT.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,9 +65,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AED9E31D17B1DA8400731CDF /* GLUT.framework in Frameworks */,
-				AED9E31B17B1DA7D00731CDF /* OpenGL.framework in Frameworks */,
-				AED9E31817B1DA4000731CDF /* Cocoa.framework in Frameworks */,
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				5BF0BE6E124AD43300583103 /* GLUT.framework in Frameworks */,
+				5BF0BE6F124AD43300583103 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,8 +85,6 @@
 				5BA2B6DB122B177E00505173 /* AppController.m */,
 				5BAF293F1240522A000ACE00 /* DegreesToRadiansTransformer.h */,
 				5BAF29401240522A000ACE00 /* DegreesToRadiansTransformer.m */,
-				5BF0BDA0124A967D00583103 /* PlotterController.h */,
-				5BF0BDA1124A967D00583103 /* PlotterController.m */,
 				5BF0BDBB124AAB1A00583103 /* PlotterView.h */,
 				5BF0BDBC124AAB1A00583103 /* PlotterView.m */,
 			);
@@ -131,8 +122,6 @@
 		29B97314FDCFA39411CA2CEA /* OutDirectionCalculator */ = {
 			isa = PBXGroup;
 			children = (
-				AED9E31C17B1DA8400731CDF /* GLUT.framework */,
-				AED9E31A17B1DA7D00731CDF /* OpenGL.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -163,7 +152,6 @@
 				5BC51044125977B50079F71F /* LogoMB2.tif */,
 				5BC51042125977AE0079F71F /* Calculator.icns */,
 				5B5CC7E1125976C1001484C0 /* OutDirectionCalculator.icns */,
-				5BF0BEBF124AD64000583103 /* Plotter.xib */,
 				8D1107310486CEB800E47090 /* OutDirectionCalculator-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
@@ -233,7 +221,6 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
-				5BF0BEC0124AD64000583103 /* Plotter.xib in Resources */,
 				5B5CC7E2125976C1001484C0 /* OutDirectionCalculator.icns in Resources */,
 				5BC51043125977AE0079F71F /* Calculator.icns in Resources */,
 				5BC51045125977B50079F71F /* LogoMB2.tif in Resources */,
@@ -254,7 +241,6 @@
 				5B379493122F28210046BC85 /* odeint.c in Sources */,
 				5B379494122F28210046BC85 /* rpoly.c in Sources */,
 				5BAF29411240522A000ACE00 /* DegreesToRadiansTransformer.m in Sources */,
-				5BF0BDA2124A967D00583103 /* PlotterController.m in Sources */,
 				5BF0BDBD124AAB1A00583103 /* PlotterView.m in Sources */,
 				5B764281124BBCA700D00D8F /* derivsAndGlobals.c in Sources */,
 			);
@@ -328,9 +314,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = "";
 			};
 			name = Debug;
 		};
@@ -341,8 +326,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				SDKROOT = macosx;
+				SDKROOT = "";
 			};
 			name = Release;
 		};

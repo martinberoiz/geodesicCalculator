@@ -10,16 +10,18 @@
 #import <math.h>
 
 @class PhotonTrajectory;
-@class PlotterController;
+@class PlotterView;
 
 @interface AppController : NSObject {
 	
 	PhotonTrajectory *aTraj;
-	PlotterController *plotterController;
+	IBOutlet PlotterView *theView;
 	
 }
 
--(IBAction)getDirection:(id)sender;
+-(void)updateView;
 +(void) initialiseValueTransformers;
+-(void)setVerticesFromPointer:(double **)sphCoordArray andNumberOfVertices:(int) n;
+
 
 @end

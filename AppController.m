@@ -9,13 +9,14 @@
 #import "AppController.h"
 #import "DegreesToRadiansTransformer.h"
 #import "PhotonTrajectory.h"
-#import "PlotterController.h"
+#import "PlotterView.h"
 
 
 @implementation AppController
 
 +(void) initialize {
 	[super initialize];
+		
 	[self initialiseValueTransformers]; 
 }
 
@@ -32,26 +33,102 @@
 	aTraj = [[PhotonTrajectory alloc] init];
 	[aTraj setPhiIn:[NSNumber numberWithDouble: 2.0]];
 	[aTraj setThetaIn:[NSNumber numberWithDouble: 1.7]];
-	[aTraj setMassToDistanceRatio:0.2];
+	[aTraj setBhMass:1.0];
+	[aTraj setPulsarDistance:5.0];
 	[aTraj setBhSpin:0.0];
+	
+	theView = [[PlotterView alloc] init];
+	
+	[aTraj addObserver:self forKeyPath:@"bhSpin" options:NSKeyValueObservingOptionNew context:NULL];
+	[aTraj addObserver:self forKeyPath:@"bhMass" options:NSKeyValueObservingOptionNew context:NULL];
+	[aTraj addObserver:self forKeyPath:@"pulsarDistance" options:NSKeyValueObservingOptionNew context:NULL];
+	[aTraj addObserver:self forKeyPath:@"thetaIn" options:NSKeyValueObservingOptionNew context:NULL];
+	[aTraj addObserver:self forKeyPath:@"phiIn" options:NSKeyValueObservingOptionNew context:NULL];
+	[aTraj addObserver:self forKeyPath:@"theta0" options:NSKeyValueObservingOptionNew context:NULL];
+	[aTraj addObserver:self forKeyPath:@"phi0" options:NSKeyValueObservingOptionNew context:NULL];
+	
+	//[self updateView];
+	
 	return self;
 }
 
--(IBAction)getDirection:(id)sender {
+-(void)updateView {
 	
 	[aTraj calculateTrajectoryParameters];
 	[aTraj calculateTrajectoryPoints];
 	
-	if (!plotterController) {
-		plotterController = [[PlotterController alloc] init];
+	[self setVerticesFromPointer:[aTraj trajectoryPointsArray] andNumberOfVertices:[aTraj numberOfPoints]];
+	
+	[theView setNeedsDisplay:YES];
+	
+}
+
+
+-(void)setVerticesFromPointer:(double **)sphCoordArray andNumberOfVertices:(int) n {
+	
+	int i;
+	GLfloat *vertices;
+	vertices = (GLfloat *)malloc(3*n*sizeof(*vertices));
+	double M = [aTraj bhMass];
+	
+	for(i = 0; i < n; i++) {
+		
+		/*Beware: Here I load the	x coord of the traj in the -z of OpenGL,
+		 y coord of the traj in the +x of OpenGL,
+		 and z coord of the traj in the +y of OpenGL,
+		 so that the scene looks like it's in the usual right handed with z upwards system*/
+		vertices[i*3] = (GLfloat)M*sphCoordArray[0][i]*sin(sphCoordArray[1][i])*sin(sphCoordArray[2][i]);
+		vertices[i*3 + 1] = (GLfloat)M*sphCoordArray[0][i]*cos(sphCoordArray[1][i]);
+		vertices[i*3 + 2] = -(GLfloat)M*sphCoordArray[0][i]*sin(sphCoordArray[1][i])*cos(sphCoordArray[2][i]);
 	}
 	
-	[plotterController showWindow:self];
+	[theView setVertexArray:vertices];
+	[theView setNumberOfVertices:n];
 	
-	[plotterController setVerticesFromPointer:[aTraj trajectoryPointsArray] andNumberOfVertices:[aTraj numberOfPoints]];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath 
+					  ofObject:(id)object 
+						change:(NSDictionary *)change 
+					   context:(void *)context {
+
+	if ([keyPath isEqual:@"bhSpin"] || 
+		[keyPath isEqual:@"thetaIn"] || 
+		[keyPath isEqual:@"phiIn"]) {
+		[self updateView];
+	}	
 		
-	[[plotterController theView] setNeedsDisplay:YES];
+	if ([keyPath isEqual:@"bhMass"]) {
+		[theView setBhMass:(GLfloat) [[change valueForKey:@"new"] doubleValue]];
+		[self updateView];
+	}
 	
+	double newPosition, theta0;
+	if ([keyPath isEqual:@"pulsarDistance"]) {
+		theta0 = [[aTraj theta0] doubleValue];
+		newPosition = [[change valueForKey:@"new"] doubleValue];
+		theView.pulsarPositionX = 0.f;
+		theView.pulsarPositionY = (GLfloat)newPosition*cos(theta0);
+		theView.pulsarPositionZ = -(GLfloat)newPosition*sin(theta0);
+		[self updateView];
+	}
+
+	double newTheta0, x, y, z, r;
+	if ([keyPath isEqual:@"theta0"]) {
+		x = [theView pulsarPositionX];
+		y = [theView pulsarPositionY];
+		z = [theView pulsarPositionZ];
+		r = sqrt(x*x + y*y + z*z);
+		
+		newTheta0 = [[change valueForKey:@"new"] doubleValue];
+		theView.pulsarPositionX = 0.f;
+		theView.pulsarPositionY = (GLfloat)r*cos(newTheta0);
+		theView.pulsarPositionZ = -(GLfloat)r*sin(newTheta0);
+		[self updateView];
+	}
+	
+
+
 }
 
 

@@ -8,17 +8,26 @@
 
 #import <Cocoa/Cocoa.h>
 
+typedef struct {
+	GLfloat x;
+	GLfloat y;
+	GLfloat z;	
+} cartesianVector;
 
 @interface PlotterView : NSOpenGLView {
 
 	int numberOfVertices;
 	GLfloat *vertexArray;
 	GLfloat eyeX, eyeY,eyeZ;
+	GLfloat bhMass;
+	GLfloat pulsarPositionX, pulsarPositionY, pulsarPositionZ;
 
 }
 
 @property(readwrite, assign) int numberOfVertices;
-@property(readwrite, assign) GLfloat* vertexArray;
-@property(readwrite, assign) GLfloat eyeX, eyeY, eyeZ;
+@property(nonatomic, readwrite) GLfloat* vertexArray;
+@property(nonatomic ,readwrite, assign) GLfloat eyeX, eyeY, eyeZ;
+@property(readwrite, assign) GLfloat bhMass;
+@property(readwrite, assign) GLfloat pulsarPositionX, pulsarPositionY, pulsarPositionZ;
 
 @end

@@ -9,22 +9,18 @@
 #import "PlotterView.h"
 #import <GLUT/GLUT.h>
 
-void unitSquare(void);
-
-void unitSquare(void) {
-	
-	glVertex3f(5, 5, 0.0);
-	glVertex3f(5, -5, 0.0);
-	glVertex3f(-5, -5, 0.0);
-	glVertex3f(-5, 5, 0.0);
-	
-}
 
 @implementation PlotterView
 
 @synthesize numberOfVertices, vertexArray;
 @synthesize eyeX, eyeY, eyeZ;
+@synthesize bhMass;
+@synthesize pulsarPositionX, pulsarPositionY, pulsarPositionZ;
 
+-(void) setVertexArray:(GLfloat *)newArray {
+	free(vertexArray);
+	vertexArray = newArray;
+}
 
 -(void)prepare {
 	
@@ -45,6 +41,11 @@ void unitSquare(void) {
 	eyeY = 0;
 	eyeZ = -30;
 
+	bhMass = 1;
+	pulsarPositionX = 0.;
+	pulsarPositionY = 0.;
+	pulsarPositionZ = -5.;
+	
 	[self prepare];
 	return self;
 }
@@ -53,9 +54,11 @@ void unitSquare(void) {
 	NSRect baseRect = [self convertRectToBase:[self bounds]];
 	glViewport(0, 0, baseRect.size.width, baseRect.size.height);
 	
+	glEnable(GL_DEPTH_TEST);
+	
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glFrustum(-1, 1, -1, 1, 1.5, 100);
+	gluPerspective(40, baseRect.size.width/baseRect.size.height, 0.1, 100);
 	glMatrixMode(GL_MODELVIEW);
 	
 }
@@ -101,16 +104,17 @@ void unitSquare(void) {
 	glVertex3f(0, 0, 100);
 	glEnd();
 	
-	
+	//Draw the photon geodesic
 	glColor3f(1.0, 1.0, 0.0);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glVertexPointer(3, GL_FLOAT, 0, vertexArray);
 	glDrawArrays(GL_LINE_STRIP, 0, numberOfVertices);
 	
+	//Draw the black hole horizon sphere
 	glColor3f(1.0, 0, 1);
 	glPushMatrix();
 	glRotatef(90, 1, 0, 0);
-	glutWireSphere(2.0, 10, 5);
+	glutWireSphere(2.*bhMass, 10, 5);
 	glPopMatrix();
 	
 	glDisableClientState(GL_VERTEX_ARRAY);
@@ -118,13 +122,11 @@ void unitSquare(void) {
 	//Draw the pulsar:
 	glColor3f(0.3, 0.3, 0.8);
 	glPushMatrix();
-	if (numberOfVertices != 0) glTranslatef(vertexArray[0], vertexArray[1], vertexArray[2]);
-	else glTranslatef(-5, 0, 0);
+	glTranslatef(pulsarPositionX, pulsarPositionY, pulsarPositionZ);
 	glRotatef(90, 1, 0, 0);
 	glutWireSphere(0.5, 10, 5);
 	glPopMatrix();
 
-	
 	
 	glFlush();
 	
