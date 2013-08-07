@@ -179,6 +179,9 @@
 	double coeff[5], zeror[4], zeroi[4];
 	double vstart[3];
 	int nok, nbad;
+    
+    double rs = 1./(2.*[self bhMass]);
+    double rh = (rs + sqrt(rs*rs-4.*pow([self bhSpin],2)))/2.;
 	
 	double r0 = 1./massToDistanceRatio;
 	
@@ -240,13 +243,13 @@
 		
 		if (fabs(q) < TINY && fabs(b) > fabs(a)) {
 			
-			//call with r and theta to avoid the problem with thMin
+			//call with psi and theta to avoid the problem with thMin
 			vstart[1] = theta0;
 			odeint(vstart, 3, 0, 1E6, 1E-4, 1E-2, 0., &nok, &nbad, &derivsUsingPsiAndTheta, &rkqs);
 
 		} else {
 			
-			//call with r and chi
+			//call with psi and chi
 			findThetaMin();
 			vstart[1] = asin(cos(theta0)/cos(thMin)); 
 			odeint(vstart, 3, 0, 1E6, 1E-4, 1E-2, 0., &nok, &nbad, &derivsUsingPsiAndChi, &rkqs);
@@ -257,6 +260,15 @@
 		for(i = 0; i < kount; i++) yp[0][i] = p/(1 + e*cos(yp[0][i]));
 	}
 	 
+    
+    //prune anything going into the horizon
+    for(i = 0; i < kount; i++) {
+        if (yp[0][i] < rh) {
+            kount = i;
+            break;
+        }
+    }
+    
 
 	[self setThetaOut:[NSNumber numberWithDouble:vstart[1]]];
 	[self setPhiOut:[NSNumber numberWithDouble:vstart[2]]];

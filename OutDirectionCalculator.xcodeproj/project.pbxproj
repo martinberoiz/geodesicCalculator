@@ -19,24 +19,20 @@
 		5BC51043125977AE0079F71F /* Calculator.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5BC51042125977AE0079F71F /* Calculator.icns */; };
 		5BC51045125977B50079F71F /* LogoMB2.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5BC51044125977B50079F71F /* LogoMB2.tif */; };
 		5BF0BDBD124AAB1A00583103 /* PlotterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0BDBC124AAB1A00583103 /* PlotterView.m */; };
-		5BF0BE6E124AD43300583103 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF0BE6C124AD43100583103 /* GLUT.framework */; };
-		5BF0BE6F124AD43300583103 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF0BE6D124AD43300583103 /* OpenGL.framework */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
-		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		AE1369211712524A001FE665 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE1369201712524A001FE665 /* Cocoa.framework */; };
+		AE13692317125261001FE665 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE13692217125261001FE665 /* OpenGL.framework */; };
+		AE13692517125279001FE665 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE13692417125279001FE665 /* GLUT.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		256AC3D80F4B6AC300CF3369 /* OutDirectionCalculatorAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutDirectionCalculatorAppDelegate.h; sourceTree = "<group>"; };
 		256AC3D90F4B6AC300CF3369 /* OutDirectionCalculatorAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutDirectionCalculatorAppDelegate.m; sourceTree = "<group>"; };
 		256AC3F00F4B6AF500CF3369 /* OutDirectionCalculator_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutDirectionCalculator_Prefix.pch; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
-		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		5B37948F122F28210046BC85 /* odeint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = odeint.c; sourceTree = "<group>"; };
 		5B379490122F28210046BC85 /* odeint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = odeint.h; sourceTree = "<group>"; };
 		5B379491122F28210046BC85 /* rpoly.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rpoly.c; sourceTree = "<group>"; };
@@ -54,10 +50,11 @@
 		5BC51044125977B50079F71F /* LogoMB2.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = LogoMB2.tif; sourceTree = "<group>"; };
 		5BF0BDBB124AAB1A00583103 /* PlotterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlotterView.h; sourceTree = "<group>"; };
 		5BF0BDBC124AAB1A00583103 /* PlotterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlotterView.m; sourceTree = "<group>"; };
-		5BF0BE6C124AD43100583103 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GLUT.framework; sourceTree = "<group>"; };
-		5BF0BE6D124AD43300583103 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenGL.framework; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* OutDirectionCalculator-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OutDirectionCalculator-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* OutDirectionCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OutDirectionCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE1369201712524A001FE665 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		AE13692217125261001FE665 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		AE13692417125279001FE665 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,9 +62,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				5BF0BE6E124AD43300583103 /* GLUT.framework in Frameworks */,
-				5BF0BE6F124AD43300583103 /* OpenGL.framework in Frameworks */,
+				AE13692517125279001FE665 /* GLUT.framework in Frameworks */,
+				AE13692317125261001FE665 /* OpenGL.framework in Frameworks */,
+				AE1369211712524A001FE665 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,26 +88,6 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
-		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
-			);
-			name = "Linked Frameworks";
-			sourceTree = "<group>";
-		};
-		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5BF0BE6C124AD43100583103 /* GLUT.framework */,
-				5BF0BE6D124AD43300583103 /* OpenGL.framework */,
-				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
-				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
-				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,10 +99,12 @@
 		29B97314FDCFA39411CA2CEA /* OutDirectionCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				AE13692417125279001FE665 /* GLUT.framework */,
+				AE13692217125261001FE665 /* OpenGL.framework */,
+				AE1369201712524A001FE665 /* Cocoa.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
-				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
 			name = OutDirectionCalculator;
@@ -157,15 +136,6 @@
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
-				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,7 +244,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -283,8 +256,8 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "OutDirectionCalculator-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = OutDirectionCalculator;
-				SDKROOT = "";
 			};
 			name = Debug;
 		};
@@ -294,15 +267,18 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = OutDirectionCalculator_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "OutDirectionCalculator-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = OutDirectionCalculator;
-				SDKROOT = "";
 			};
 			name = Release;
 		};
@@ -315,7 +291,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = "";
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -326,7 +302,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				SDKROOT = "";
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
