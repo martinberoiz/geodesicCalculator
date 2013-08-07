@@ -63,8 +63,6 @@
 		5BF0BEBF124AD64000583103 /* Plotter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Plotter.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* OutDirectionCalculator-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OutDirectionCalculator-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* OutDirectionCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OutDirectionCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AED9E31417B1D5E700731CDF /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
-		AED9E31617B1D5EE00731CDF /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/GLUT.framework; sourceTree = DEVELOPER_DIR; };
 		AED9E31A17B1DA7D00731CDF /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = ../../../../../../System/Library/Frameworks/OpenGL.framework; sourceTree = "<group>"; };
 		AED9E31C17B1DA8400731CDF /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../../../../System/Library/Frameworks/GLUT.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,8 +133,6 @@
 			children = (
 				AED9E31C17B1DA8400731CDF /* GLUT.framework */,
 				AED9E31A17B1DA7D00731CDF /* OpenGL.framework */,
-				AED9E31617B1D5EE00731CDF /* GLUT.framework */,
-				AED9E31417B1D5E700731CDF /* OpenGL.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
