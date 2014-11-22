@@ -36,9 +36,7 @@
 	[aTraj setBhMass:1.0];
 	[aTraj setPulsarDistance:5.0];
 	[aTraj setBhSpin:0.0];
-	
-	theView = [[PlotterView alloc] init];
-	
+		
 	[aTraj addObserver:self forKeyPath:@"bhSpin" options:NSKeyValueObservingOptionNew context:NULL];
 	[aTraj addObserver:self forKeyPath:@"bhMass" options:NSKeyValueObservingOptionNew context:NULL];
 	[aTraj addObserver:self forKeyPath:@"pulsarDistance" options:NSKeyValueObservingOptionNew context:NULL];
@@ -56,11 +54,8 @@
 	
 	[aTraj calculateTrajectoryParameters];
 	[aTraj calculateTrajectoryPoints];
-	
 	[self setVerticesFromPointer:[aTraj trajectoryPointsArray] andNumberOfVertices:[aTraj numberOfPoints]];
-	
 	[theView setNeedsDisplay:YES];
-	
 }
 
 

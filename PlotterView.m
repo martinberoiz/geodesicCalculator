@@ -134,7 +134,6 @@
 #undef TINY
 
 - (BOOL)acceptsFirstResponder {
-	
     return YES;	
 }
 
