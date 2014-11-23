@@ -7,6 +7,7 @@
 //
 
 #import "OutDirectionCalculatorAppDelegate.h"
+#import "AppController.h"
 
 @implementation OutDirectionCalculatorAppDelegate
 
@@ -14,7 +15,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	// Insert code here to initialize your application
-    
+    [viewController updateView];
 }
 
 -(BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {

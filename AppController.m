@@ -15,8 +15,7 @@
 @implementation AppController
 
 +(void) initialize {
-	[super initialize];
-		
+	[super initialize];		
 	[self initialiseValueTransformers]; 
 }
 
@@ -25,7 +24,6 @@
 	DegreesToRadiansTransformer *dToRTransformer = [[[DegreesToRadiansTransformer alloc] init] autorelease];
 	[DegreesToRadiansTransformer setValueTransformer:dToRTransformer 
 											 forName:@"DegreesToRadiansTransformer"];
-
 }
 
 -(id)init {
@@ -44,9 +42,7 @@
 	[aTraj addObserver:self forKeyPath:@"phiIn" options:NSKeyValueObservingOptionNew context:NULL];
 	[aTraj addObserver:self forKeyPath:@"theta0" options:NSKeyValueObservingOptionNew context:NULL];
 	[aTraj addObserver:self forKeyPath:@"phi0" options:NSKeyValueObservingOptionNew context:NULL];
-	
-	//[self updateView];
-	
+		
 	return self;
 }
 
@@ -67,7 +63,6 @@
 	double M = [aTraj bhMass];
 	
 	for(i = 0; i < n; i++) {
-		
 		/*Beware: Here I load the	x coord of the traj in the -z of OpenGL,
 		 y coord of the traj in the +x of OpenGL,
 		 and z coord of the traj in the +y of OpenGL,
@@ -76,10 +71,8 @@
 		vertices[i*3 + 1] = (GLfloat)M*sphCoordArray[0][i]*cos(sphCoordArray[1][i]);
 		vertices[i*3 + 2] = -(GLfloat)M*sphCoordArray[0][i]*sin(sphCoordArray[1][i])*cos(sphCoordArray[2][i]);
 	}
-	
 	[theView setVertexArray:vertices];
 	[theView setNumberOfVertices:n];
-	
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath 
@@ -121,9 +114,6 @@
 		theView.pulsarPositionZ = -(GLfloat)r*sin(newTheta0);
 		[self updateView];
 	}
-	
-
-
 }
 
 

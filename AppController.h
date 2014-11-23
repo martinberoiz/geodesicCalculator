@@ -13,10 +13,8 @@
 @class PlotterView;
 
 @interface AppController : NSObject {
-	
 	PhotonTrajectory *aTraj;
 	IBOutlet PlotterView *theView;
-	
 }
 
 -(void)updateView;

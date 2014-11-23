@@ -40,7 +40,7 @@ void rkqs(double *y, double *dydx, int n, double *x, double htry, double eps,
 			htemp = SAFETY*h*pow(errmax, PSHRNK);
 			h = (h >= 0.0 ? FMAX(htemp, 0.1*h) : FMIN(htemp, 0.1*h));
 			xnew = (*x) + h;
-			if (xnew == *x) printf("stepsize underflow in rkqs\n");
+			//if (xnew == *x) printf("stepsize underflow in rkqs\n");
 			continue;
 		} else {
 			if (errmax > ERRCON) *hnext = SAFETY*h*pow(errmax, PGROW);

@@ -7,9 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+@class AppController;
 
 @interface OutDirectionCalculatorAppDelegate : NSObject <NSApplicationDelegate> {
     NSWindow *window;
+    IBOutlet AppController* viewController;
 }
 
 @property (assign) IBOutlet NSWindow *window;
