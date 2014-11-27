@@ -8,7 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface PhotonTrajectory : NSObject {
 	
 	double bhSpin;
@@ -26,7 +25,7 @@
 	
 	int numberOfPoints;
 	double **trajectoryPointsArray;
-	
+    
 }
 
 -(id)calculateTrajectoryPoints;

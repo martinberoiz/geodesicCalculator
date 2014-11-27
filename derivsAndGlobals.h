@@ -30,8 +30,16 @@ int isGoingUp;
 
 /********* END OF GLOBAL VARS **********/
 
-void derivsUsingRAndTheta();
-void derivsUsingRAndChi();
-void derivsUsingPsiAndTheta();
-void derivsUsingPsiAndChi();
+#ifdef __cplusplus /* If this is a C++ compiler, use C linkage */
+extern "C" {
+#endif
+
+void derivsUsingRAndTheta(double t, double *v, double *dv);
+void derivsUsingRAndChi(double t, double *v, double *dv);
+void derivsUsingPsiAndTheta(double t, double *v, double *dv);
+void derivsUsingPsiAndChi(double t, double *v, double *dv);
 void findThetaMin(void);
+
+#ifdef __cplusplus /* If this is a C++ compiler, end C linkage */
+}
+#endif

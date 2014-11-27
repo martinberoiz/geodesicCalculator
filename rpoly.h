@@ -27,14 +27,22 @@
  */
 
 
-extern double *p_,*qp,*k,*qk,*svk;
+/*extern double *p_,*qp,*k,*qk,*svk;
 extern double sr,si,u,v_,a_,b_,c,d_,a1,a2;
 extern double a3,a6,a7,e_,f,g,h,szr,szi,lzr,lzi;
 extern double eta,are,mre;
-extern int n,nn,nmi,zerok;
+extern int n,nn,nmi,zerok;*/
+
+#ifdef __cplusplus /* If this is a C++ compiler, use C linkage */
+extern "C" {
+#endif
 
 int rpoly(double *op, int degree, double *zeror, double *zeroi);
 
 //This is not part of the original rpoly. It was added by me.
 //gives the roots of the cubic equation: a*x^2 + b*x + c = 0 (returns # of real roots found)
 int quadratic_solver(double a, double b, double c, double *sol1, double *sol2);
+
+#ifdef __cplusplus /* If this is a C++ compiler, use C linkage */
+}
+#endif

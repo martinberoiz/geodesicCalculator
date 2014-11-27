@@ -8,9 +8,15 @@
 
 #import "PhotonTrajectory.h"
 #import "rpoly.h"
-#import "odeint.h"
 #import "derivsAndGlobals.h"
+#include "RKIntegrator.h"
 
+@interface PhotonTrajectory () {
+	RKIntegrator* trajGenerator;
+    double *xp, **yp;
+    int kmax;
+}
+@end
 
 @implementation PhotonTrajectory
 
@@ -100,15 +106,15 @@
 		trajectoryPointsArray = NULL;
 		
 		/*This is to save intermediate values */
-		int i;
 		int nvars = 3;
 		kmax = 100;
 		xp = (double *)malloc(kmax*sizeof(*xp));
 		yp = (double **)malloc(nvars*sizeof(**yp));
 		yp[0] = (double *)malloc(nvars*kmax*sizeof(**yp));
-		for (i = 1; i < nvars; i++) yp[i] = yp[i - 1] + kmax;
-		dxsav = 1E-2;
-		
+		for (int i = 1; i < nvars; i++) yp[i] = yp[i - 1] + kmax;
+        
+        trajGenerator = new RKIntegrator(nvars, xp, yp);
+
 	}
 		
 	return self;
@@ -175,14 +181,14 @@
 #define TINY 1E-6
 -(id)calculateTrajectoryPoints {
 		
-	int i;
+    int kount = 0;
 	double coeff[5], zeror[4], zeroi[4];
 	double vstart[3];
-	int nok, nbad;
-    
+    //Schwarzchild radius
     double rs = 1./(2.*[self bhMass]);
+    //Horizon radius
     double rh = (rs + sqrt(rs*rs-4.*pow([self bhSpin],2)))/2.;
-	
+	//Initial radial coord. of the pulsar
 	double r0 = 1./massToDistanceRatio;
 	
 	//phi_0
@@ -192,7 +198,10 @@
 	if(thetaIn < M_PI && thetaIn > M_PI/2.) isGoingUp = NO;
 	else isGoingUp = YES;
 	
-	
+    double dxsav = 0.;
+    double lambda1 = 0.;
+    double lambda2 = 1E6;
+
 	/*shouldUsePsi being positive or negative tells wether r dot is >0 or <0.
 	 If r dot is negative there will be a turning point => use psi
 	 This is the derivative of r along r_in at r0 (nabla r times n_in | r0)*/
@@ -204,19 +213,23 @@
 		vstart[0] = r0;
 		
 		if (fabs(q) < TINY && fabs(b) < fabs(a)) {
-			
 			//call with r and theta to avoid the problem with thMin
 			vstart[1] = theta0;
-			odeint(vstart, 3, 0, 1E6, 1E-4, 1E-2, 0., &nok, &nbad, &derivsUsingRAndTheta, &rkqs);
-			
+            trajGenerator->setDerivativeFunction(&derivsUsingRAndTheta);
+            trajGenerator->setInitialConditions(vstart);
+            kount = trajGenerator->integrateInterval(lambda1, lambda2, dxsav, kmax);
+			//odeint(vstart, 3, 0, 1E6, 1E-4, 1E-2, 0., &nok, &nbad, &derivsUsingRAndTheta, &rkqs);
 		} else {
 			
 			//call with r and chi
 			findThetaMin();
-			vstart[1] = asin(cos(theta0)/cos(thMin)); 
-			odeint(vstart, 3, 0, 1E6, 1E-4, 1E-2, 0., &nok, &nbad, &derivsUsingRAndChi, &rkqs);
+			vstart[1] = asin(cos(theta0)/cos(thMin));
+        	trajGenerator->setDerivativeFunction(&derivsUsingRAndChi);
+            trajGenerator->setInitialConditions(vstart);
+            kount = trajGenerator->integrateInterval(lambda1, lambda2, dxsav, kmax);
+			//odeint(vstart, 3, 0, 1E6, 1E-4, 1E-2, 0., &nok, &nbad, &derivsUsingRAndChi, &rkqs);
 			vstart[1] = acos(cos(thMin)*sin(vstart[1]));
-			for(i = 0; i < kount; i++) yp[1][i] = acos(cos(thMin)*sin(yp[1][i]));
+			for(int i = 0; i < kount; i++) yp[1][i] = acos(cos(thMin)*sin(yp[1][i]));
 		}
 		
 	} else {
@@ -242,37 +255,36 @@
 		vstart[0] = -acos((p/r0 - 1)/e);
 		
 		if (fabs(q) < TINY && fabs(b) > fabs(a)) {
-			
 			//call with psi and theta to avoid the problem with thMin
 			vstart[1] = theta0;
-			odeint(vstart, 3, 0, 1E6, 1E-4, 1E-2, 0., &nok, &nbad, &derivsUsingPsiAndTheta, &rkqs);
-
+            trajGenerator->setDerivativeFunction(&derivsUsingPsiAndTheta);
+            trajGenerator->setInitialConditions(vstart);
+            kount = trajGenerator->integrateInterval(lambda1, lambda2, dxsav, kmax);
+			//odeint(vstart, 3, 0, 1E6, 1E-4, 1E-2, 0., &nok, &nbad, &derivsUsingPsiAndTheta, &rkqs);
 		} else {
-			
 			//call with psi and chi
 			findThetaMin();
-			vstart[1] = asin(cos(theta0)/cos(thMin)); 
-			odeint(vstart, 3, 0, 1E6, 1E-4, 1E-2, 0., &nok, &nbad, &derivsUsingPsiAndChi, &rkqs);
+			vstart[1] = asin(cos(theta0)/cos(thMin));
+            trajGenerator->setDerivativeFunction(&derivsUsingPsiAndChi);
+            trajGenerator->setInitialConditions(vstart);
+            kount = trajGenerator->integrateInterval(lambda1, lambda2, dxsav, kmax);
+			//odeint(vstart, 3, 0, 1E6, 1E-4, 1E-2, 0., &nok, &nbad, &derivsUsingPsiAndChi, &rkqs);
 			vstart[1] = acos(cos(thMin)*sin(vstart[1]));
-			for(i = 0; i < kount; i++) yp[1][i] = acos(cos(thMin)*sin(yp[1][i]));
+			for(int i = 0; i < kount; i++) yp[1][i] = acos(cos(thMin)*sin(yp[1][i]));
 		}
-		
-		for(i = 0; i < kount; i++) yp[0][i] = p/(1 + e*cos(yp[0][i]));
-	}
-	 
+		for(int i = 0; i < kount; i++) yp[0][i] = p/(1 + e*cos(yp[0][i]));
+    }
     
-    //prune anything going into the horizon
-    for(i = 0; i < kount; i++) {
-        if (yp[0][i] < rh) {
+    //prune anything going into the horizon or NaN's
+    for(int i = 0; i < kount; i++) {
+        if (yp[0][i] < rh || yp[0][i] != yp[0][i]) {
             kount = i;
             break;
         }
     }
     
-
 	[self setThetaOut:[NSNumber numberWithDouble:vstart[1]]];
 	[self setPhiOut:[NSNumber numberWithDouble:vstart[2]]];
-		
 	[self setTrajectoryPointsArray:yp];
 	[self setNumberOfPoints:kount];
 	
@@ -283,13 +295,10 @@
 
 -(void) dealloc {
 
-	if (trajectoryPointsArray != NULL) {
-		free(trajectoryPointsArray[0]);
-		free(trajectoryPointsArray);
-	} else {
-		free(yp[0]);
-		free(yp);
-	}
+    free(xp);
+    free(yp[0]);
+    free(yp);
+    delete trajGenerator;
 	[super dealloc];
 	
 }

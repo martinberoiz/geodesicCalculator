@@ -16,7 +16,7 @@
 
 +(void) initialize {
 	[super initialize];		
-	[self initialiseValueTransformers]; 
+	[self initialiseValueTransformers];
 }
 
 +(void) initialiseValueTransformers {

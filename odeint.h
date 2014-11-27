@@ -6,6 +6,10 @@
 int kmax,kount;
 double *xp,**yp,dxsav;
 
+#ifdef __cplusplus /* If this is a C++ compiler, use C linkage */
+extern "C" {
+#endif
+
 void rkqs(double *, double *, int, double *, double, double, double *,
 		  double *, double *, void (*)(double, double *, double *));
 
@@ -19,3 +23,6 @@ void odeint(double *ystart, int nvar, double x1, double x2, double eps, double h
 						 double *, double *, void (*)(double, double *, double *)));
 
 
+#ifdef __cplusplus /* If this is a C++ compiler, use C linkage */
+}
+#endif

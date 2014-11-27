@@ -9,11 +9,10 @@
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		256AC3DA0F4B6AC300CF3369 /* OutDirectionCalculatorAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* OutDirectionCalculatorAppDelegate.m */; };
-		5B379493122F28210046BC85 /* odeint.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B37948F122F28210046BC85 /* odeint.c */; };
 		5B379494122F28210046BC85 /* rpoly.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B379491122F28210046BC85 /* rpoly.c */; };
 		5B5CC7E2125976C1001484C0 /* OutDirectionCalculator.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CC7E1125976C1001484C0 /* OutDirectionCalculator.icns */; };
 		5B764281124BBCA700D00D8F /* derivsAndGlobals.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B764280124BBCA700D00D8F /* derivsAndGlobals.c */; };
-		5BA2B6D8122B148E00505173 /* PhotonTrajectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA2B6D7122B148E00505173 /* PhotonTrajectory.m */; };
+		5BA2B6D8122B148E00505173 /* PhotonTrajectory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5BA2B6D7122B148E00505173 /* PhotonTrajectory.mm */; };
 		5BA2B6DC122B177E00505173 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA2B6DB122B177E00505173 /* AppController.m */; };
 		5BAF29411240522A000ACE00 /* DegreesToRadiansTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF29401240522A000ACE00 /* DegreesToRadiansTransformer.m */; };
 		5BC51043125977AE0079F71F /* Calculator.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5BC51042125977AE0079F71F /* Calculator.icns */; };
@@ -24,6 +23,7 @@
 		AE1369211712524A001FE665 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE1369201712524A001FE665 /* Cocoa.framework */; };
 		AE13692317125261001FE665 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE13692217125261001FE665 /* OpenGL.framework */; };
 		AE13692517125279001FE665 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE13692417125279001FE665 /* GLUT.framework */; };
+		AEF8B5881A228DF6002DE100 /* RKIntegrator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEF8B5861A228DF6002DE100 /* RKIntegrator.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +41,7 @@
 		5B76427F124BBCA700D00D8F /* derivsAndGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = derivsAndGlobals.h; sourceTree = "<group>"; };
 		5B764280124BBCA700D00D8F /* derivsAndGlobals.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = derivsAndGlobals.c; sourceTree = "<group>"; };
 		5BA2B6D6122B148E00505173 /* PhotonTrajectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotonTrajectory.h; sourceTree = "<group>"; };
-		5BA2B6D7122B148E00505173 /* PhotonTrajectory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotonTrajectory.m; sourceTree = "<group>"; };
+		5BA2B6D7122B148E00505173 /* PhotonTrajectory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PhotonTrajectory.mm; sourceTree = "<group>"; };
 		5BA2B6DA122B177E00505173 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		5BA2B6DB122B177E00505173 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
 		5BAF293F1240522A000ACE00 /* DegreesToRadiansTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DegreesToRadiansTransformer.h; sourceTree = "<group>"; };
@@ -55,6 +55,8 @@
 		AE1369201712524A001FE665 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		AE13692217125261001FE665 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		AE13692417125279001FE665 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		AEF8B5861A228DF6002DE100 /* RKIntegrator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RKIntegrator.cpp; sourceTree = "<group>"; };
+		AEF8B5871A228DF6002DE100 /* RKIntegrator.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = RKIntegrator.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,13 +79,15 @@
 				256AC3D80F4B6AC300CF3369 /* OutDirectionCalculatorAppDelegate.h */,
 				256AC3D90F4B6AC300CF3369 /* OutDirectionCalculatorAppDelegate.m */,
 				5BA2B6D6122B148E00505173 /* PhotonTrajectory.h */,
-				5BA2B6D7122B148E00505173 /* PhotonTrajectory.m */,
+				5BA2B6D7122B148E00505173 /* PhotonTrajectory.mm */,
 				5BA2B6DA122B177E00505173 /* AppController.h */,
 				5BA2B6DB122B177E00505173 /* AppController.m */,
 				5BAF293F1240522A000ACE00 /* DegreesToRadiansTransformer.h */,
 				5BAF29401240522A000ACE00 /* DegreesToRadiansTransformer.m */,
 				5BF0BDBB124AAB1A00583103 /* PlotterView.h */,
 				5BF0BDBC124AAB1A00583103 /* PlotterView.m */,
+				AEF8B5861A228DF6002DE100 /* RKIntegrator.cpp */,
+				AEF8B5871A228DF6002DE100 /* RKIntegrator.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -206,13 +210,13 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* OutDirectionCalculatorAppDelegate.m in Sources */,
-				5BA2B6D8122B148E00505173 /* PhotonTrajectory.m in Sources */,
+				5BA2B6D8122B148E00505173 /* PhotonTrajectory.mm in Sources */,
 				5BA2B6DC122B177E00505173 /* AppController.m in Sources */,
-				5B379493122F28210046BC85 /* odeint.c in Sources */,
+				5B764281124BBCA700D00D8F /* derivsAndGlobals.c in Sources */,
 				5B379494122F28210046BC85 /* rpoly.c in Sources */,
 				5BAF29411240522A000ACE00 /* DegreesToRadiansTransformer.m in Sources */,
+				AEF8B5881A228DF6002DE100 /* RKIntegrator.cpp in Sources */,
 				5BF0BDBD124AAB1A00583103 /* PlotterView.m in Sources */,
-				5B764281124BBCA700D00D8F /* derivsAndGlobals.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

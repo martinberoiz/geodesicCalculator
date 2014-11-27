@@ -51,7 +51,7 @@
 }
 
 -(void)reshape {
-	NSRect baseRect = [self convertRectToBase:[self bounds]];
+	NSRect baseRect = [self convertRectToBacking:[self bounds]];
 	glViewport(0, 0, baseRect.size.width, baseRect.size.height);
 	
 	glEnable(GL_DEPTH_TEST);
